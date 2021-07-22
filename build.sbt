@@ -4,14 +4,6 @@ name := "sbts3"
 
 description := "S3 Plugin for sbt"
 
-version := "0.10.6-SNAPSHOT"
-
-isSnapshot := true
-
-organization := "cf.janga"
-
-organizationName := "Janga"
-
 startYear := Some(2013)
 
 lazy val root = (project in file("."))
@@ -29,16 +21,20 @@ scalacOptions in (Compile, doc) ++=
   Opts.doc.version(version.value) ++
   Seq("-doc-root-content", (sourceDirectory.value / "main/rootdoc.txt").getAbsolutePath())
 
-publishTo := sonatypePublishTo.value
-
-sonatypeProjectHosting := Some(GitHubHosting("emersonloureiro", "sbt-s3", "emerson.loureiro@gmail.com"))
-
-sonatypeProfileName := "cf.janga"
-
-publishMavenStyle := true
-
-publishConfiguration := publishConfiguration.value.withOverwrite(true)
+inThisBuild(
+  List(
+    organization := "com.kubukoz",
+    homepage := Some(url("https://github.com/sbt/sbt-s3")),
+    licenses := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+    developers := List(
+      Developer(
+        "kubukoz",
+        "Jakub Kozłowski",
+        "kubukoz@gmail.com",
+        url("https://kubukoz.com")
+      )
+    )
+  )
+)
 
 crossSbtVersions := Seq("0.13.18", "1.2.8")
-
-licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
